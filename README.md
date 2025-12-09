@@ -17,9 +17,9 @@
 
 ## 快速开始
 
-### 🐳 Docker 部署（推荐）
+### 配置说明
 
-#### 方式一：使用 Docker Compose（推荐）
+在开始之前，需要先完成以下配置（Docker 部署和本地开发都需要）：
 
 1. **配置应用信息**
 
@@ -60,13 +60,15 @@
    ]
    ```
 
-4. **构建并启动**
+### 🐳 Docker 部署（推荐）
 
-   ```bash
-   docker-compose up -d --build
-   ```
+#### 方式一：使用 Docker Compose（推荐）
 
-   访问 http://localhost:8080 即可查看你的主页。
+```bash
+docker-compose up -d --build
+```
+
+访问 http://localhost:8080 即可查看你的主页。
 
 #### 方式二：使用 Docker 命令
 
@@ -95,45 +97,6 @@
 
 ```bash
 npm install
-```
-
-#### 配置应用信息
-
-编辑 `src/config/app.json`：
-
-```json
-{
-  "title": "你的主页标题",
-  "siteName": "Your HomePage",
-  "repository": "https://github.com/your-username/your-repo"
-}
-```
-
-#### 配置环境变量
-
-复制 `env.template` 为 `.env` 并填写你的联系方式：
-
-```bash
-cp env.template .env
-```
-
-编辑 `.env` 文件：
-
-```
-VITE_CONTACT_GITHUB=https://github.com/your-username
-VITE_CONTACT_EMAIL=your-email@example.com
-VITE_CONTACT_TELEGRAM=https://t.me/your-username
-```
-
-#### 配置快速入口
-
-编辑 `src/config/quick-links.json`：
-
-```json
-[
-  { "label": "Google", "url": "https://google.com" },
-  { "label": "GitHub", "url": "https://github.com" }
-]
 ```
 
 #### 开发
