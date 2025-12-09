@@ -1,7 +1,4 @@
 [
   { "label": "Google", "url": "https://google.com" },
-  { "label": "GitHub", "url": "https://github.com" },
-  { "label": "Blog", "url": "https://blog.1024.do/" },
-  { "label": "探针", "url": "https://tz.1024.do/" }
+  { "label": "GitHub", "url": "https://github.com" }
 ]
-

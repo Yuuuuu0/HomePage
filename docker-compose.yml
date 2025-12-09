@@ -6,7 +6,7 @@ services:
     image: homepage:latest
     container_name: homepage
     ports:
-      - "17834:8080"
+      - "8080:8080"
     restart: unless-stopped
     environment:
       - TZ=Asia/Shanghai
