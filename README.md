@@ -27,13 +27,89 @@
 
 ## 快速开始
 
-### 安装依赖
+### 🐳 Docker 部署（推荐）
+
+#### 方式一：使用 Docker Compose（推荐）
+
+1. **配置应用信息**
+
+   编辑 `src/config/app.json`：
+
+   ```json
+   {
+     "title": "你的主页标题",
+     "siteName": "Your HomePage",
+     "repository": "https://github.com/your-username/your-repo"
+   }
+   ```
+
+2. **配置环境变量**
+
+   复制 `env.template` 为 `.env` 并填写你的联系方式：
+
+   ```bash
+   cp env.template .env
+   ```
+
+   编辑 `.env` 文件：
+
+   ```
+   VITE_CONTACT_GITHUB=https://github.com/your-username
+   VITE_CONTACT_EMAIL=your-email@example.com
+   VITE_CONTACT_TELEGRAM=https://t.me/your-username
+   ```
+
+3. **配置快速入口**
+
+   编辑 `src/config/quick-links.json`：
+
+   ```json
+   [
+     { "label": "Google", "url": "https://google.com" },
+     { "label": "GitHub", "url": "https://github.com" }
+   ]
+   ```
+
+4. **构建并启动**
+
+   ```bash
+   docker-compose up -d --build
+   ```
+
+   访问 http://localhost:8080 即可查看你的主页。
+
+#### 方式二：使用 Docker 命令
+
+1. **构建镜像**
+
+   ```bash
+   docker build -t homepage .
+   ```
+
+2. **运行容器**
+
+   ```bash
+   docker run -d -p 8080:8080 --name homepage homepage
+   ```
+
+   访问 http://localhost:8080 即可查看你的主页。
+
+#### Docker 部署说明
+
+- 默认端口：`8080`，可通过修改 `docker-compose.yml` 中的端口映射来更改
+- 容器会自动重启（`restart: unless-stopped`）
+- 使用轻量级的 `http-server` 提供静态文件服务
+- 基于 `node:18-alpine` 镜像，镜像体积更小
+
+### 💻 本地开发
+
+#### 安装依赖
 
 ```bash
 npm install
 ```
 
-### 配置应用信息
+#### 配置应用信息
 
 编辑 `src/config/app.json`：
 
@@ -45,7 +121,7 @@ npm install
 }
 ```
 
-### 配置环境变量
+#### 配置环境变量
 
 复制 `env.template` 为 `.env` 并填写你的联系方式：
 
@@ -61,7 +137,7 @@ VITE_CONTACT_EMAIL=your-email@example.com
 VITE_CONTACT_TELEGRAM=https://t.me/your-username
 ```
 
-### 配置快速入口
+#### 配置快速入口
 
 编辑 `src/config/quick-links.json`：
 
@@ -72,13 +148,13 @@ VITE_CONTACT_TELEGRAM=https://t.me/your-username
 ]
 ```
 
-### 开发
+#### 开发
 
 ```bash
 npm run dev
 ```
 
-### 构建
+#### 构建
 
 ```bash
 npm run build

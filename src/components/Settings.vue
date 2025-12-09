@@ -40,7 +40,7 @@ interface Emits {
   (e: 'close'): void
 }
 
-const props = defineProps<Props>()
+const { isOpen } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const { selectedType, isLoading, wallpaperTypes, selectWallpaperType } = useWallpaper()
