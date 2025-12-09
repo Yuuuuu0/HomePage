@@ -3,6 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # 从 .env 文件读取环境变量并传递给构建过程
+        VITE_CONTACT_GITHUB: ${VITE_CONTACT_GITHUB:-}
+        VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
+        VITE_CONTACT_TELEGRAM: ${VITE_CONTACT_TELEGRAM:-}
     image: homepage:latest
     container_name: homepage
     ports:
