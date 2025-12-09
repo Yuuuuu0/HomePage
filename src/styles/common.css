@@ -1,0 +1,41 @@
+/* 公共文字阴影样式 */
+.text-shadow-soft {
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-medium {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6), 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.text-shadow-small {
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5), 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 禁止文本选择 */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* 毛玻璃效果 */
+.glass-effect {
+  background: rgba(60, 60, 60, 0.5);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-effect-light {
+  background: rgba(80, 80, 80, 0.5);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 过渡动画 */
+.transition-smooth {
+  transition: all 0.3s ease;
+}
+
