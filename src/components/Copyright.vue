@@ -44,12 +44,22 @@ const repoName = computed(() => extractRepoName(repository.value))
 }
 
 
-.copyright-text,
+.copyright-text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5), 0 0 3px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
 .repo-text,
 .repo-link {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.5), 0 0 3px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
 }
 
 .repo-link {
@@ -64,6 +74,38 @@ const repoName = computed(() => extractRepoName(repository.value))
 .repo-separator {
   margin: 0 8px;
   opacity: 0.5;
+  white-space: nowrap;
+}
+
+/* 手机端优化：缩小字体和间距，确保一行显示 */
+@media (max-width: 768px) {
+  .copyright {
+    bottom: 10px;
+    padding: 0 10px;
+    width: 100%;
+    left: 0;
+    transform: none;
+  }
+
+  .copyright-content {
+    gap: 4px;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  .copyright-text {
+    font-size: 9px;
+    line-height: 1.2;
+  }
+
+  .repo-text,
+  .repo-link {
+    font-size: 9px;
+  }
+
+  .repo-separator {
+    margin: 0 4px;
+  }
 }
 </style>
 
