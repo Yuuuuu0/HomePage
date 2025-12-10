@@ -23,6 +23,22 @@ body {
   overflow: hidden;
 }
 
+/* 手机端允许滚动 */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow: auto;
+    height: auto;
+    min-height: 100%;
+  }
+
+  #app {
+    overflow: visible;
+    height: auto;
+    min-height: 100%;
+  }
+}
+
 body {
   background-color: #1a1a1a;
   color: #ffffff;

@@ -80,6 +80,13 @@ const closeSettings = () => {
 }
 
 @media (max-width: 768px) {
+  .app {
+    overflow: visible;
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+  }
+
   .main-content {
     max-width: 100%;
     gap: 24px;
