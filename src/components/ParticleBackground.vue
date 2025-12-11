@@ -33,6 +33,8 @@ const initCanvas = () => {
   if (!canvasRef.value) return
   
   canvas = canvasRef.value
+  if (!canvas) return
+  
   ctx = canvas.getContext('2d')
   
   if (!ctx) return
@@ -71,6 +73,9 @@ const createParticles = () => {
 const updateParticles = () => {
   if (!canvas) return
   
+  const canvasWidth = canvas.width
+  const canvasHeight = canvas.height
+  
   particles.forEach(particle => {
     // 鼠标排斥效果
     const dx = particle.x - mouseX
@@ -88,13 +93,13 @@ const updateParticles = () => {
     particle.y += particle.vy
     
     // 边界检测
-    if (particle.x < 0 || particle.x > canvas.width) {
+    if (particle.x < 0 || particle.x > canvasWidth) {
       particle.vx *= -1
-      particle.x = Math.max(0, Math.min(canvas.width, particle.x))
+      particle.x = Math.max(0, Math.min(canvasWidth, particle.x))
     }
-    if (particle.y < 0 || particle.y > canvas.height) {
+    if (particle.y < 0 || particle.y > canvasHeight) {
       particle.vy *= -1
-      particle.y = Math.max(0, Math.min(canvas.height, particle.y))
+      particle.y = Math.max(0, Math.min(canvasHeight, particle.y))
     }
     
     // 速度衰减
