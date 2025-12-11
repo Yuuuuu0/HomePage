@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { WALLPAPER_SOURCES, STORAGE_KEYS, TIMEOUTS } from '@/utils/constants'
 import { setWallpaper as setWallpaperStyle, setLoadingBackground, resetBackground } from '@/utils/background'
+import { getFallbackWallpaper } from '@/utils/fallbackWallpaper'
 
 const DEFAULT_TYPE = 'anime'
 
@@ -20,6 +21,39 @@ export function useWallpaper() {
     selectedType.value = type
   }
 
+  /**
+   * 尝试加载预制背景图作为兜底
+   * 固定使用 wallpaper.jpg
+   */
+  const loadFallbackWallpaper = async (): Promise<boolean> => {
+    try {
+      const fallbackUrl = getFallbackWallpaper()
+      return new Promise((resolve) => {
+        const img = new Image()
+        const timeout = setTimeout(() => {
+          resolve(false)
+        }, 3000) // 3秒超时
+        
+        img.onload = () => {
+          clearTimeout(timeout)
+          setWallpaperStyle(fallbackUrl)
+          console.log('Using fallback wallpaper:', fallbackUrl)
+          resolve(true)
+        }
+        
+        img.onerror = () => {
+          clearTimeout(timeout)
+          resolve(false)
+        }
+        
+        img.src = fallbackUrl
+      })
+    } catch (error) {
+      console.error('Failed to load fallback wallpaper:', error)
+      return false
+    }
+  }
+
   const loadWallpaper = async (type?: string): Promise<void> => {
     const wallpaperType = type || selectedType.value || getStoredType()
     const source = WALLPAPER_SOURCES.find(s => s.id === wallpaperType)
@@ -32,7 +66,7 @@ export function useWallpaper() {
     isLoading.value = true
     setLoadingBackground()
     
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
       const url = `${source.url}?t=${Date.now()}`
       const img = new Image()
       
@@ -41,10 +75,14 @@ export function useWallpaper() {
         resolve()
       }
       
-      const timeout = setTimeout(() => {
+      const timeout = setTimeout(async () => {
         if (isLoading.value) {
-          console.warn('Wallpaper load timeout')
-          resetBackground()
+          console.warn('Wallpaper load timeout, trying fallback wallpaper...')
+          // 尝试加载预制背景图
+          const fallbackLoaded = await loadFallbackWallpaper()
+          if (!fallbackLoaded) {
+            resetBackground()
+          }
           cleanup()
         }
       }, TIMEOUTS.WALLPAPER_LOAD)
@@ -55,10 +93,15 @@ export function useWallpaper() {
         cleanup()
       }
       
-      img.onerror = () => {
+      img.onerror = async () => {
         clearTimeout(timeout)
         console.error('Failed to load wallpaper from:', source.url)
-        resetBackground()
+        console.log('Trying fallback wallpaper...')
+        // 尝试加载预制背景图
+        const fallbackLoaded = await loadFallbackWallpaper()
+        if (!fallbackLoaded) {
+          resetBackground()
+        }
         cleanup()
       }
       
