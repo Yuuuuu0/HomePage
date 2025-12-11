@@ -23,8 +23,8 @@ let mouseX = 0
 let mouseY = 0
 let resizeHandler: (() => void) | null = null
 
-const PARTICLE_COUNT = 50
-const CONNECTION_DISTANCE = 150
+const PARTICLE_COUNT = 80
+const CONNECTION_DISTANCE = 180
 const PARTICLE_SPEED = 0.5
 const MOUSE_INFLUENCE_DISTANCE = 100
 const MOUSE_REPEL_STRENGTH = 0.02
@@ -64,8 +64,8 @@ const createParticles = () => {
       y: Math.random() * canvas.height,
       vx: (Math.random() - 0.5) * PARTICLE_SPEED,
       vy: (Math.random() - 0.5) * PARTICLE_SPEED,
-      radius: Math.random() * 2 + 1,
-      opacity: Math.random() * 0.5 + 0.2
+      radius: Math.random() * 2.5 + 1.5,
+      opacity: Math.random() * 0.5 + 0.5
     })
   }
 }
@@ -121,9 +121,9 @@ const drawParticles = () => {
       const distance = Math.sqrt(dx * dx + dy * dy)
       
       if (distance < CONNECTION_DISTANCE) {
-        const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.3
+        const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.5
         ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`
-        ctx.lineWidth = 0.5
+        ctx.lineWidth = 1
         ctx.beginPath()
         ctx.moveTo(particles[i].x, particles[i].y)
         ctx.lineTo(particles[j].x, particles[j].y)
@@ -177,6 +177,6 @@ onUnmounted(() => {
   height: 100%;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.9;
 }
 </style>

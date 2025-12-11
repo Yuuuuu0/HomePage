@@ -1,5 +1,5 @@
 <template>
-  <div class="hitokoto" @click="fetchHitokoto">
+  <div class="hitokoto">
     <div v-if="isLoading" class="loading">加载中...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
     <div v-else class="content">
@@ -12,21 +12,15 @@
 <script setup lang="ts">
 import { useHitokoto } from '@/composables/useHitokoto'
 
-const { hitokoto, from, isLoading, error, fetchHitokoto } = useHitokoto()
+const { hitokoto, from, isLoading, error } = useHitokoto()
 </script>
 
 <style scoped>
 .hitokoto {
   padding: 20px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.hitokoto:hover {
-  transform: translateY(-2px);
 }
 
 .content {
