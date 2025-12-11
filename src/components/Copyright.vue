@@ -17,12 +17,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { getRepository } from '@/utils/config'
 import { extractRepoName } from '@/utils/helpers'
 
+const REPOSITORY_URL = 'https://github.com/Yuuuuu0/HomePage'
+
 const currentYear = computed(() => new Date().getFullYear())
-const repository = computed(() => getRepository())
-const repoName = computed(() => extractRepoName(repository.value))
+const repository = computed(() => REPOSITORY_URL)
+const repoName = computed(() => extractRepoName(REPOSITORY_URL))
 </script>
 
 <style scoped>

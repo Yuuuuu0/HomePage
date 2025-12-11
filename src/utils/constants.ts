@@ -9,7 +9,7 @@ export const HITOKOTO_API = 'https://v1.hitokoto.cn/'
 export const WALLPAPER_SOURCES = [
   { id: 'bing', name: '每日一图', url: 'https://api.dujin.org/bing/1920.php' },
   { id: 'fengjing', name: '随机风景', url: 'https://tu.ltyuanfang.cn/api/fengjing.php' },
-  { id: 'anime', name: '随机动漫', url: 'https://api.paugram.com/wallpaper' }
+  { id: 'anime', name: '随机动漫', url: 'https://www.loliapi.com/acg/' }
 ] as const
 
 export const STORAGE_KEYS = {

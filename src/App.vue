@@ -1,10 +1,12 @@
 <template>
   <Loading v-if="!isAppReady" />
   <div v-else class="app fade-in-up">
+    <ParticleBackground />
     <HomeClock @click="openSettings" />
     <Settings :is-open="isSettingsOpen" @close="closeSettings" />
     <div class="main-content">
       <SiteName />
+      <SearchBox />
       <Hitokoto />
       <QuickLinks />
     </div>
@@ -21,6 +23,8 @@ import { useHitokoto } from './composables/useHitokoto'
 import Settings from './components/Settings.vue'
 import HomeClock from './components/HomeClock.vue'
 import SiteName from './components/SiteName.vue'
+import SearchBox from './components/SearchBox.vue'
+import ParticleBackground from './components/ParticleBackground.vue'
 import Hitokoto from './components/Hitokoto.vue'
 import QuickLinks from './components/QuickLinks.vue'
 import Contacts from './components/Contacts.vue'
