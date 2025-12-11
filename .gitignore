@@ -28,3 +28,6 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Config files
+src/config/app.json
+src/config/quick-links.json

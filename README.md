@@ -23,13 +23,18 @@
 
 1. **配置应用信息**
 
+   复制模板文件并编辑：
+
+   ```bash
+   cp src/config/app.json.template src/config/app.json
+   ```
+
    编辑 `src/config/app.json`：
 
    ```json
    {
      "title": "你的主页标题",
-     "siteName": "Your HomePage",
-     "repository": "https://github.com/your-username/your-repo"
+     "siteName": "Your HomePage"
    }
    ```
 
@@ -51,6 +56,12 @@
 
 3. **配置快速入口**
 
+   复制模板文件并编辑：
+
+   ```bash
+   cp src/config/quick-links.json.template src/config/quick-links.json
+   ```
+
    编辑 `src/config/quick-links.json`：
 
    ```json
@@ -59,6 +70,8 @@
      { "label": "GitHub", "url": "https://github.com" }
    ]
    ```
+
+> **注意**：`src/config/app.json` 和 `src/config/quick-links.json` 已被 `.gitignore` 忽略，不会提交到仓库。每次部署时，需要从模板文件复制并配置。
 
 ### 🐳 Docker 部署（推荐）
 
@@ -115,11 +128,24 @@ npm run build
 
 ### 应用配置 (`src/config/app.json`)
 
+首次部署时，从模板文件复制：
+
+```bash
+cp src/config/app.json.template src/config/app.json
+```
+
+配置项说明：
+
 - `title`: 浏览器标签页标题
 - `siteName`: 页面中央显示的网站名称
-- `repository`: 项目仓库地址（用于版权信息显示）
 
 ### 快速入口配置 (`src/config/quick-links.json`)
+
+首次部署时，从模板文件复制：
+
+```bash
+cp src/config/quick-links.json.template src/config/quick-links.json
+```
 
 所有快速入口链接都在此文件中配置，格式如下：
 
@@ -128,6 +154,8 @@ npm run build
   { "label": "显示文本", "url": "链接地址" }
 ]
 ```
+
+> **提示**：这两个配置文件已被 `.gitignore` 忽略，不会提交到仓库。每次在新环境部署时，都需要从对应的 `.template` 文件复制并配置。
 
 ### 联系方式配置 (`.env`)
 
