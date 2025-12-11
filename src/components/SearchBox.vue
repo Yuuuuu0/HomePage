@@ -205,7 +205,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .search-container.is-focused {
@@ -249,6 +249,8 @@ onUnmounted(() => {
   flex: 1;
   padding: 0 12px;
   position: relative;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .search-input {
@@ -391,6 +393,15 @@ onUnmounted(() => {
     padding: 0 16px;
   }
   
+  .search-container {
+    overflow: hidden;
+  }
+  
+  .search-input-wrapper {
+    padding: 0 8px;
+    gap: 4px;
+  }
+  
   .search-input {
     font-size: 13px;
     padding: 6px 6px;
@@ -421,14 +432,9 @@ onUnmounted(() => {
     font-size: 12px;
   }
   
-  .shortcut-hint {
-    font-size: 10px;
-    padding: 2px 6px;
-  }
-  
-  .shortcut-hint kbd {
-    font-size: 9px;
-    padding: 1px 4px;
+  /* 手机端隐藏快捷提示，避免超出搜索栏 */
+  .shortcut-hint-wrapper {
+    display: none;
   }
 }
 </style>

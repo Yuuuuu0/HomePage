@@ -179,4 +179,11 @@ onUnmounted(() => {
   pointer-events: none;
   opacity: 0.9;
 }
+
+/* 手机端隐藏粒子效果 */
+@media (max-width: 768px) {
+  .particle-canvas {
+    display: none;
+  }
+}
 </style>
