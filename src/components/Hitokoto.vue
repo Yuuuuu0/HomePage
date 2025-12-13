@@ -21,6 +21,10 @@ const { hitokoto, from, isLoading, error } = useHitokoto()
   display: flex;
   flex-direction: column;
   justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .content {

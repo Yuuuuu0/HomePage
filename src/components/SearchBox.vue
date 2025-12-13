@@ -31,23 +31,23 @@
           </svg>
         </button>
       </div>
-      <Transition name="dropdown">
-        <div v-if="showEngineMenu" ref="engineMenuRef" class="engine-menu" @click.stop :style="{ left: menuLeft }">
-          <button
-            v-for="engine in searchEngines"
-            :key="engine.id"
-            class="engine-menu-item"
-            :class="{ active: currentEngine.id === engine.id }"
-            @click="selectEngine(engine.id)"
-          >
-            <span class="engine-menu-logo">
-              <span v-if="engine.id === 'google'">G</span>
-              <span v-else-if="engine.id === 'bing'">B</span>
-            </span>
-          </button>
-        </div>
-      </Transition>
     </div>
+    <Transition name="dropdown">
+      <div v-if="showEngineMenu" ref="engineMenuRef" class="engine-menu" @click.stop :style="{ left: menuLeft }">
+        <button
+          v-for="engine in searchEngines"
+          :key="engine.id"
+          class="engine-menu-item"
+          :class="{ active: currentEngine.id === engine.id }"
+          @click="selectEngine(engine.id)"
+        >
+          <span class="engine-menu-logo">
+            <span v-if="engine.id === 'google'">G</span>
+            <span v-else-if="engine.id === 'bing'">B</span>
+          </span>
+        </button>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -90,11 +90,11 @@ const updateMenuPosition = () => {
     nextTick(() => {
       if (logoRef.value) {
         const logoRect = logoRef.value.getBoundingClientRect()
-        const container = logoRef.value.closest('.search-container')
-        if (container) {
-          const containerRect = container.getBoundingClientRect()
-          // 计算logo中心点相对于容器的位置
-          const logoCenterX = logoRect.left + logoRect.width / 2 - containerRect.left
+        const searchBox = logoRef.value.closest('.search-box')
+        if (searchBox) {
+          const searchBoxRect = searchBox.getBoundingClientRect()
+          // 计算logo中心点相对于search-box的位置
+          const logoCenterX = logoRect.left + logoRect.width / 2 - searchBoxRect.left
           // 下拉菜单中logo的尺寸
           const menuLogoSize = 28
           // 让下拉菜单的logo中心与搜索框中的logo中心对齐
@@ -147,7 +147,7 @@ const handleBlur = () => {
 
 const handleClickOutside = (e: MouseEvent) => {
   const target = e.target as HTMLElement
-  if (!target.closest('.search-container')) {
+  if (!target.closest('.search-box')) {
     showEngineMenu.value = false
   }
 }
@@ -329,6 +329,7 @@ onUnmounted(() => {
 .engine-menu {
   position: absolute;
   top: calc(100% + 8px);
+  left: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
